@@ -12,14 +12,23 @@ namespace NoteTakerServer.Services
             _users = FileStorage.LoadUsers();
             _jwtTokenService = jwtTokenService;
         }
-        public List<User> Signup(User user)
+        public User Signup(User user)
         {
             try
             {
                 var token = _jwtTokenService.GenerateJwtToken(user);
                 user.AccessToken = token;
+                user.UserId = Guid.NewGuid().ToString();
+                user.ExpireTime = DateTime.UtcNow.AddMinutes(720);
                 _users.Add(user);
-                return FileStorage.SaveUsers(_users);
+                FileStorage.SaveUsers(_users);
+                var userObject = new User { 
+                    UserId = user.UserId, 
+                    UserName = user.UserName, 
+                    Email = user.Email, 
+                    AccessToken = user.AccessToken, 
+                    ExpireTime = user.ExpireTime };
+                return userObject;
             }
             catch (Exception ex)
             {
@@ -28,15 +37,19 @@ namespace NoteTakerServer.Services
         }
         public User ValidateUser(string email, string password)
         {
-            return _users.FirstOrDefault(u => u.UserName == email && u.Password == password);
+            return _users.FirstOrDefault(u => u.Email == email && u.Password == password);
         }
         public User GetUserByEmail(string email)
         {
-            return _users.FirstOrDefault(u => u.Email == email) ?? new UserError() { IsError = true, Message = "User not found"};
+            return _users.FirstOrDefault(u => u.Email == email);
         }
         public bool IsUserExists(string email)
         {
             return _users.Any(u => u.Email == email);
+        }
+        public User GetUserById(string userId)
+        {
+            return _users.FirstOrDefault(u => u.UserId == userId);
         }
         public List<User> GetUsers()
         {
@@ -79,7 +92,7 @@ namespace NoteTakerServer.Services
                 throw new Exception("An error occurred while updating user", ex);
             }
         }
-        public void DeleteUser(string email) 
+        public void DeleteUser(string email)
         {
             try
             {

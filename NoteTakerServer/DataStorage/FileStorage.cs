@@ -27,11 +27,10 @@ namespace NoteTakerServer.DataStorage
             var jsonData = File.ReadAllText(UserFile);
             return JsonConvert.DeserializeObject<List<User>>(jsonData) ?? new List<User>();
         }
-        public static List<User>  SaveUsers(List<User> users)
+        public static void SaveUsers(List<User> users)
         {
             var jsonData = JsonConvert.SerializeObject(users, Formatting.Indented);
             File.WriteAllText(UserFile, jsonData);
-            return users;
         }
 
         public static List<Note> LoadNotes()

@@ -1,25 +1,41 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NoteTakerServer.Models;
 using NoteTakerServer.Services;
-
+using System.Security.Claims;
 namespace NoteTakerServer.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class NotesController : ControllerBase
     {
         private readonly NotesService _notesService;
-
-        public NotesController(NotesService notesService)
+        private readonly AuthService _authService;
+        public NotesController(NotesService notesService, AuthService authService)
         {
             _notesService = notesService;
+            _authService = authService;
         }
 
         [HttpPost]
         public IActionResult Create([FromBody] Note note)
         {
-            _notesService.CreateNote(note);
-            return Ok("Note created successfully.");
+            var userEmail = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                return Unauthorized("User email not found in token");
+            }
+
+            var user = _authService.GetUserById(userEmail);
+            if (user == null)
+            {
+                return Unauthorized("User not found");
+            }
+
+            var noteId = _notesService.CreateNote(note, user.UserId);
+            var response = new { Id = noteId };
+            return Ok(response);
         }
 
         [HttpGet]
@@ -30,12 +46,13 @@ namespace NoteTakerServer.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(string id)
         {
             var note = _notesService.GetNoteById(id);
             if (note == null)
             {
-                return NotFound("Note not found.");
+                var errorObj = new NoteError() { ErrorCode = "404", Message = "Note not found." };
+                return NotFound(errorObj);
             }
             return Ok(note);
         }
@@ -43,14 +60,25 @@ namespace NoteTakerServer.Controllers
         [HttpPut]
         public IActionResult Update([FromBody] Note note)
         {
-            _notesService.UpdateNote(note);
-            return Ok("Note updated successfully.");
+            var updatedNote = _notesService.UpdateNote(note);
+            if(updatedNote == null)
+            {
+                var errorObj = new NoteError() { ErrorCode = "400", Message = "Failed to update note." };
+                return BadRequest(errorObj);
+            }
+            var messageObj = new { Message = "Note updated successfully." };
+            return Ok(messageObj);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
-            _notesService.DeleteNote(id);
+            var note = _notesService.DeleteNote(id);
+            if (note == null)
+            {
+                var errorObj = new NoteError() { ErrorCode = "404", Message = "Note not found." };
+                return NotFound(errorObj);
+            }
             return Ok("Note deleted successfully.");
         }
     }

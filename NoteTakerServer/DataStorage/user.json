@@ -1,0 +1,12 @@
+[
+  {
+    "UserId": "97f21239-2596-425d-ba3f-921eb42772d5",
+    "UserName": "exampleUser",
+    "Name": "Example",
+    "Email": "example2@example.com",
+    "DateOfBirth": "1990-01-01T00:00:00Z",
+    "Password": "examplePassword",
+    "AccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6Ijk3ZjIxMjM5LTI1OTYtNDI1ZC1iYTNmLTkyMWViNDI3NzJkNSIsInN1YiI6ImV4YW1wbGVVc2VyIiwiZW1haWwiOiJleGFtcGxlMkBleGFtcGxlLmNvbSIsImp0aSI6Ijc2ZGFmMWIxLTZhNGEtNDUxYy04MmEyLWJkMmI2M2YyNDMxZiIsImV4cCI6MTczNDA3MTk4NywiaXNzIjoiTm90ZVRha2VyU2VydmVyIiwiYXVkIjoiTm90ZVRha2VyQ2xpZW50In0.nao-6OKweCVWM6t8bZqajW4xTZGnLi5ofoG1ERhwEIo",
+    "ExpireTime": "2024-12-13T06:05:03.1383422Z"
+  }
+]

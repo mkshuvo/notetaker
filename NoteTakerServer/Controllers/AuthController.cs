@@ -21,17 +21,17 @@ namespace NoteTakerServer.Controllers
         {
             if (_authService.IsUserExists(user.Email))
             {
-                return BadRequest(new UserError() { IsError = true, StatusCode = "400", Message = "User already exists" });
+                return BadRequest(new UserError() { ErrorCode = "400", Message = "User already exists" });
             }
             // send user with token
-            _authService.Signup(user);
-            return Ok(new { Message = "User created successfully", user });
+            var response = _authService.Signup(user);
+            return Ok(new { Message = "User created successfully", response });
         }
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginDTO loginDTO)
         {
-            var user = _authService.ValidateUser(loginDTO.Username, loginDTO.Password);
+            var user = _authService.ValidateUser(loginDTO.Email, loginDTO.Password);
             if (user == null)
             {
                 return Unauthorized("Invalid email or password.");

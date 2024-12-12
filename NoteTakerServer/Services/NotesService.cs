@@ -12,10 +12,14 @@ namespace NoteTakerServer.Services
             _notes = FileStorage.LoadNotes();
         }
 
-        public void CreateNote(Note note)
+        public string CreateNote(Note note, string userId)
         {
+            note.NoteId = Guid.NewGuid().ToString();
+            // use the note owner to identify the user
+            note.NoteOwner = userId;
             _notes.Add(note);
             FileStorage.SaveNotes(_notes);
+            return note.NoteId;
         }
 
         public List<Note> GetNotes()
@@ -23,35 +27,40 @@ namespace NoteTakerServer.Services
             return _notes;
         }
 
-        public Note GetNoteById(int noteId)
+        public Note GetNoteById(string noteId)
         {
-            return _notes.FirstOrDefault(n => n.NoteId == noteId) ?? new NoteError(){ IsError = true, StatusCode = "404", Message = "Note not found"};
+            return _notes.FirstOrDefault(n => n.NoteId == noteId);
         }
 
-        public void UpdateNote(Note note)
+        public Note UpdateNote(Note note)
         {
-            var existingNote = _notes.FirstOrDefault(n => n.NoteId == note.NoteId);
+            if (note == null)
+            {
+                return null;
+            }
+            var existingNote = GetNoteById(note.NoteId);
             if (existingNote != null)
             {
                 existingNote.Type = note.Type;
-                existingNote.NoteOwner = note.NoteOwner;
                 existingNote.Text = note.Text;
                 existingNote.Reminder = note.Reminder;
                 existingNote.DueDate = note.DueDate;
                 existingNote.IsComplete = note.IsComplete;
-                existingNote.URL = note.URL;
+                existingNote.Url = note.Url;
                 FileStorage.SaveNotes(_notes);
             }
+            return existingNote;
         }
 
-        public void DeleteNote(int noteId)
+        public Note DeleteNote(string noteId)
         {
-            var note = _notes.FirstOrDefault(n => n.NoteId == noteId);
+            var note = GetNoteById(noteId);
             if (note != null)
             {
                 _notes.Remove(note);
                 FileStorage.SaveNotes(_notes);
             }
+            return note;
         }
     }
 }
