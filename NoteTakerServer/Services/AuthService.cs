@@ -12,6 +12,10 @@ namespace NoteTakerServer.Services
             _users = FileStorage.LoadUsers();
             _jwtTokenService = jwtTokenService;
         }
+        private string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password);
+        }
         public User Signup(User user)
         {
             try
@@ -20,6 +24,7 @@ namespace NoteTakerServer.Services
                 var token = _jwtTokenService.GenerateJwtToken(user);
                 user.AccessToken = token;
                 user.ExpireTime = DateTime.UtcNow.AddMinutes(720);
+                user.Password = HashPassword(user.Password);
                 _users.Add(user);
                 FileStorage.SaveUsers(_users);
                 var userObject = new User { 
@@ -38,7 +43,17 @@ namespace NoteTakerServer.Services
         }
         public User ValidateUser(string email, string password)
         {
-            return _users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            var user = _users.FirstOrDefault(u => u.Email == email);
+            if (user != null && VerifyPassword(password, user.Password))
+            {
+                return user;
+            }
+            return null;
+        }
+
+        private bool VerifyPassword(string inputPassword, string storedHash)
+        {
+            return BCrypt.Net.BCrypt.Verify(inputPassword, storedHash);
         }
         public User GetUserByEmail(string email)
         {

@@ -1,4 +1,3 @@
-// src/components/CreateNoteModal.tsx
 import React, { useState } from 'react';
 import { Modal, Form, Button, Alert } from 'react-bootstrap';
 import { useAuth } from '@/ContextApi/AuthContext';

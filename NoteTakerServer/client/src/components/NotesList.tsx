@@ -1,4 +1,3 @@
-// src/components/NotesList.tsx
 'use client';
 
 import { Card, Badge, Button, Row, Col, Form } from 'react-bootstrap';
