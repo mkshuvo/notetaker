@@ -39,41 +39,5 @@ namespace NoteTakerServer.Controllers
             var updatedToken = _authService.UpdateAccessToken(user);
             return Ok(new { Token = updatedToken, user });
         }
-        [HttpGet]
-        public IActionResult GetUsers()
-        {
-            try
-            {
-                var users = _authService.GetUsers();
-                return Ok(users);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception
-                return StatusCode(500, "Internal server error: " + ex.Message);
-            }
-        }
-        [HttpPut]
-        public IActionResult UpdateUser([FromBody] User user)
-        {
-            if (!_authService.IsUserExists(user.Email))
-            {
-                return NotFound("User not found.");
-            }
-
-            _authService.UpdateUser(user);
-            return Ok(new { Message = "User updated successfully.", user });
-        }
-        [HttpDelete("{email}")]
-        public IActionResult DeleteUser(string email)
-        {
-            if (!_authService.IsUserExists(email))
-            {
-                return NotFound("User not found.");
-            }
-
-            _authService.DeleteUser(email);
-            return Ok(new { Message = "User deleted successfully." });
-        }
     }
 }

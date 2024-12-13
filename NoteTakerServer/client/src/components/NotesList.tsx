@@ -25,6 +25,7 @@ export default function NotesList({ notes, onUpdate }: Props) {
 
   const handleToggleComplete = async (noteId: string) => {
     if (noteId && accessToken) {
+      debugger
       await toggleNoteComplete(noteId, accessToken);
       onUpdate();
     }

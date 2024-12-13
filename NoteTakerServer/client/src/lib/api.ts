@@ -43,6 +43,6 @@ export async function deleteNote(id: string, token: string | null): Promise<void
 
 export async function toggleNoteComplete(id: string, token: string | null): Promise<void> {
   await authFetch(`${API_BASE_URL}/notes/${id}/complete`, token, {
-    method: 'PUT',
+    method: 'PATCH',
   });
 }

@@ -77,35 +77,13 @@
     "CreatedDate": "2024-12-13T13:59:05.1724002Z"
   },
   {
-    "Type": 1,
-    "NoteId": "26676960-fd81-4500-9d51-8a2c3b0ae3fa",
-    "NoteOwner": "97f21239-2596-425d-ba3f-921eb42772d5",
-    "Text": "This is a sample note",
-    "Reminder": "2024-12-12T10:22:06.775Z",
-    "DueDate": "2024-12-13T10:22:06.775Z",
-    "IsComplete": false,
-    "Url": "http://example.com",
-    "CreatedDate": "2024-12-13T13:59:05.1724116Z"
-  },
-  {
-    "Type": 0,
-    "NoteId": "dd2ef684-5ac8-4067-84a6-15c5f41087a9",
-    "NoteOwner": "97f21239-2596-425d-ba3f-921eb42772d5",
-    "Text": "Something\n",
-    "Reminder": null,
-    "DueDate": null,
-    "IsComplete": false,
-    "Url": null,
-    "CreatedDate": "2024-12-13T13:59:05.151Z"
-  },
-  {
     "Type": 2,
     "NoteId": "a81ee585-a219-460f-a209-fae2bc0b8719",
     "NoteOwner": "97f21239-2596-425d-ba3f-921eb42772d5",
     "Text": "Todo is life",
     "Reminder": null,
     "DueDate": "2024-12-18T13:59:00Z",
-    "IsComplete": false,
+    "IsComplete": true,
     "Url": null,
     "CreatedDate": "2024-12-13T13:59:38.141Z"
   },
@@ -119,5 +97,38 @@
     "IsComplete": false,
     "Url": "http://localhost:3000/dashboard",
     "CreatedDate": "2024-12-13T14:37:40.222Z"
+  },
+  {
+    "Type": 0,
+    "NoteId": "9c3433a0-624f-4878-8073-41765f51d384",
+    "NoteOwner": "97f21239-2596-425d-ba3f-921eb42772d5",
+    "Text": "Test regular",
+    "Reminder": null,
+    "DueDate": null,
+    "IsComplete": false,
+    "Url": null,
+    "CreatedDate": "2024-12-13T17:43:37.811Z"
+  },
+  {
+    "Type": 2,
+    "NoteId": "8691e554-43e1-43e6-9369-c1e7fcc9099d",
+    "NoteOwner": "97f21239-2596-425d-ba3f-921eb42772d5",
+    "Text": "Test todo",
+    "Reminder": null,
+    "DueDate": "2024-12-24T17:43:00Z",
+    "IsComplete": false,
+    "Url": null,
+    "CreatedDate": "2024-12-13T17:43:51.532Z"
+  },
+  {
+    "Type": 1,
+    "NoteId": "28b58809-666c-4e24-94d1-7b73eae3da2e",
+    "NoteOwner": "97f21239-2596-425d-ba3f-921eb42772d5",
+    "Text": "Test Reminder",
+    "Reminder": null,
+    "DueDate": "2024-12-23T17:44:00Z",
+    "IsComplete": false,
+    "Url": null,
+    "CreatedDate": "2024-12-13T17:44:14.639Z"
   }
 ]
