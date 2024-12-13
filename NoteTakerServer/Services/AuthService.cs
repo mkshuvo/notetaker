@@ -16,9 +16,9 @@ namespace NoteTakerServer.Services
         {
             try
             {
+                user.UserId = Guid.NewGuid().ToString();
                 var token = _jwtTokenService.GenerateJwtToken(user);
                 user.AccessToken = token;
-                user.UserId = Guid.NewGuid().ToString();
                 user.ExpireTime = DateTime.UtcNow.AddMinutes(720);
                 _users.Add(user);
                 FileStorage.SaveUsers(_users);
@@ -27,7 +27,8 @@ namespace NoteTakerServer.Services
                     UserName = user.UserName, 
                     Email = user.Email, 
                     AccessToken = user.AccessToken, 
-                    ExpireTime = user.ExpireTime };
+                    ExpireTime = user.ExpireTime 
+                };
                 return userObject;
             }
             catch (Exception ex)

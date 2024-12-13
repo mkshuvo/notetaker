@@ -81,5 +81,41 @@ namespace NoteTakerServer.Controllers
             }
             return Ok("Note deleted successfully.");
         }
+        [HttpGet("user/{id}/due/{dueType}")]
+        public IActionResult GetDue(string id, string dueType)
+        {
+            List<Note> notes = dueType.ToLower() switch
+            {
+                "today" => _notesService.TodaysDueNotes(id),
+                "week" => _notesService.WeeksDueNotes(id),
+                "month" => _notesService.MonthsDueNotes(id),
+                _ => null
+            };
+
+            if (notes == null)
+            {
+                var errorObj = new NoteError() { ErrorCode = "404", Message = "Note not found." };
+                return NotFound(errorObj);
+            }
+
+            return Ok(notes);
+        }
+        [HttpGet("user/{id}")]
+        public IActionResult UserNotes(string id)
+        {
+            var notes = _notesService.AllNotes(id);
+            return Ok(notes);
+        }
+        [HttpPatch("{id}/complete")]
+        public IActionResult MarkCompleted(string id)
+        {
+            var note = _notesService.MarkNoteCompleted(id);
+            if (note == null)
+            {
+                var errorObj = new NoteError() { ErrorCode = "404", Message = "Note not found." };
+                return NotFound(errorObj);
+            }
+            return Ok("Note marked as completed.");
+        }
     }
 }

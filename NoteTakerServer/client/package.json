@@ -11,7 +11,19 @@
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.1.0"
+    "next": "15.1.0",
+    "@types/node": "20.6.2",
+    "@types/react": "18.2.22",
+    "@types/react-dom": "18.2.7",
+    "autoprefixer": "^10.4.17",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "date-fns": "^3.6.0",
+    "eslint": "8.49.0",
+    "eslint-config-next": "13.5.1",
+    "postcss": "^8.4.35",
+    "react-bootstrap": "^2.10.1",
+    "typescript": "5.2.2"
   },
   "devDependencies": {
     "typescript": "^5",

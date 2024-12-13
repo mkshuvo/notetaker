@@ -15,6 +15,7 @@ namespace NoteTakerServer.Models
         public DateTime? DueDate { get; set; }
         public bool? IsComplete { get; set; } = false;
         public string? Url { get; set; }
+        public DateTime? CreatedDate { get; set; } = DateTime.UtcNow;
     }
     public class NoteError
     {

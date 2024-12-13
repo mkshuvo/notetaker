@@ -7,7 +7,8 @@
     "Reminder": "2024-12-12T10:22:06.775Z",
     "DueDate": "2024-12-13T10:22:06.775Z",
     "IsComplete": false,
-    "Url": "http://example.com"
+    "Url": "http://example.com",
+    "CreatedDate": "2024-12-13T13:59:05.1723627Z"
   },
   {
     "Type": 0,
@@ -17,7 +18,8 @@
     "Reminder": "2024-12-12T10:22:06.775Z",
     "DueDate": "2024-12-13T10:22:06.775Z",
     "IsComplete": false,
-    "Url": "http://example.com"
+    "Url": "http://example.com",
+    "CreatedDate": "2024-12-13T13:59:05.1723798Z"
   },
   {
     "Type": 0,
@@ -27,7 +29,8 @@
     "Reminder": "2024-12-12T10:22:06.775Z",
     "DueDate": "2024-12-13T10:22:06.775Z",
     "IsComplete": false,
-    "Url": "http://example.com"
+    "Url": "http://example.com",
+    "CreatedDate": "2024-12-13T13:59:05.1723857Z"
   },
   {
     "Type": 0,
@@ -37,7 +40,8 @@
     "Reminder": "2024-12-12T10:22:06.775Z",
     "DueDate": "2024-12-13T10:22:06.775Z",
     "IsComplete": false,
-    "Url": "http://example.com"
+    "Url": "http://example.com",
+    "CreatedDate": "2024-12-13T13:59:05.1723876Z"
   },
   {
     "Type": 0,
@@ -47,7 +51,8 @@
     "Reminder": "2024-12-12T10:22:06.775Z",
     "DueDate": "2024-12-13T10:22:06.775Z",
     "IsComplete": false,
-    "Url": "http://example.com"
+    "Url": "http://example.com",
+    "CreatedDate": "2024-12-13T13:59:05.1723915Z"
   },
   {
     "Type": 0,
@@ -57,7 +62,8 @@
     "Reminder": "2024-12-12T10:22:06.775Z",
     "DueDate": "2024-12-13T10:22:06.775Z",
     "IsComplete": false,
-    "Url": "http://example.com"
+    "Url": "http://example.com",
+    "CreatedDate": "2024-12-13T13:59:05.1723982Z"
   },
   {
     "Type": 0,
@@ -67,7 +73,8 @@
     "Reminder": "2024-12-12T10:22:06.775Z",
     "DueDate": "2024-12-13T10:22:06.775Z",
     "IsComplete": false,
-    "Url": "http://example.com"
+    "Url": "http://example.com",
+    "CreatedDate": "2024-12-13T13:59:05.1724002Z"
   },
   {
     "Type": 1,
@@ -77,6 +84,40 @@
     "Reminder": "2024-12-12T10:22:06.775Z",
     "DueDate": "2024-12-13T10:22:06.775Z",
     "IsComplete": false,
-    "Url": "http://example.com"
+    "Url": "http://example.com",
+    "CreatedDate": "2024-12-13T13:59:05.1724116Z"
+  },
+  {
+    "Type": 0,
+    "NoteId": "dd2ef684-5ac8-4067-84a6-15c5f41087a9",
+    "NoteOwner": "97f21239-2596-425d-ba3f-921eb42772d5",
+    "Text": "Something\n",
+    "Reminder": null,
+    "DueDate": null,
+    "IsComplete": false,
+    "Url": null,
+    "CreatedDate": "2024-12-13T13:59:05.151Z"
+  },
+  {
+    "Type": 2,
+    "NoteId": "a81ee585-a219-460f-a209-fae2bc0b8719",
+    "NoteOwner": "97f21239-2596-425d-ba3f-921eb42772d5",
+    "Text": "Todo is life",
+    "Reminder": null,
+    "DueDate": "2024-12-18T13:59:00Z",
+    "IsComplete": false,
+    "Url": null,
+    "CreatedDate": "2024-12-13T13:59:38.141Z"
+  },
+  {
+    "Type": 3,
+    "NoteId": "3861031a-2207-4de1-94ce-38a9cb63d9f0",
+    "NoteOwner": "97f21239-2596-425d-ba3f-921eb42772d5",
+    "Text": "Helpful book",
+    "Reminder": null,
+    "DueDate": null,
+    "IsComplete": false,
+    "Url": "http://localhost:3000/dashboard",
+    "CreatedDate": "2024-12-13T14:37:40.222Z"
   }
 ]

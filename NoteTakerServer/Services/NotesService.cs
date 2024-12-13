@@ -62,5 +62,31 @@ namespace NoteTakerServer.Services
             }
             return note;
         }
+        public Note MarkNoteCompleted(string noteId)
+        {
+            var note = GetNoteById(noteId);
+            if (note != null)
+            {
+                note.IsComplete = true;
+                FileStorage.SaveNotes(_notes);
+            }
+            return note;
+        }
+        public List<Note> AllNotes(string userId)
+        {
+            return _notes.Where(n => n.NoteOwner == userId).ToList();
+        }
+        public List<Note> TodaysDueNotes(string userId)
+        {
+            return _notes.Where(n => n.IsComplete == false && n.NoteOwner == userId && n.DueDate == DateTime.Today).ToList();
+        }
+        public List<Note> WeeksDueNotes(string userId)
+        {
+            return _notes.Where(n => n.IsComplete == false && n.NoteOwner == userId && n.DueDate == DateTime.Today.AddDays(7)).ToList();
+        }
+        public List<Note> MonthsDueNotes(string userId)
+        {
+            return _notes.Where(n => n.IsComplete == false && n.NoteOwner == userId && n.DueDate == DateTime.Today.AddDays(30)).ToList();
+        }
     }
 }
